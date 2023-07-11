@@ -1,272 +1,259 @@
 // Define an interface for characters that can attack
 interface Attackable {
-  attack(): void;
+  attack(target: Character): void;
 }
 
 // Define an interface for characters that can defend
 interface Defendable {
-  defend(): void;
+  defend(attacker: Character): void;
 }
 
 // Define a base abstract class for characters
 abstract class Character implements Attackable, Defendable {
-  protected gold: number = 0;
+  protected name: string;
+  protected health: number;
+  protected level: number;
+  protected gold: number;
 
-  constructor() {}
+  constructor(name: string, health: number, level: number) {
+    this.name = name;
+    this.health = health;
+    this.level = level;
+    this.gold = 0;
+  }
 
   // Method for collecting gold
   collectGold(amount: number) {
     this.gold += amount;
-    console.log(`${this.constructor.name} collected ${amount} gold.`);
+    console.log(`${this.name} collected ${amount} gold.`);
   }
 
   // Abstract method for attacking
-  abstract attack(): void;
+  abstract attack(target: Character): void;
 
   // Abstract method for defending
-  abstract defend(): void;
+  abstract defend(attacker: Character): void;
+
+  // Method to check if the character is alive
+  isAlive(): boolean {
+    return this.health > 0;
+  }
+
+  // Method to display character's information
+  getInfo(): void {
+    console.log(`Name: ${this.name}`);
+    console.log(`Health: ${this.health}`);
+    console.log(`Level: ${this.level}`);
+    console.log(`Gold: ${this.gold}`);
+  }
 }
 
 // Ogre class
 class Ogre extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Ogres
-  attack() {
-    console.log("Ogre attacks with a club.");
+  attack(target: Character) {
+    console.log(`${this.name} attacks ${target.name} with a club.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Ogres
-  defend() {
-    console.log("Ogre defends with a shield.");
+  defend(attacker: Character) {
+    console.log(`${this.name} defends against ${attacker.name} with a shield.`);
+    // Implement defend logic
   }
 }
 
 // Peon class
 class Peon extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Peons
-  attack() {
-    console.log("Peon attacks with a club.");
+  attack(target: Character) {
+    console.log(`${this.name} attacks ${target.name} with a club.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Peons
-  defend() {
-    console.log("Peon defends with a shield.");
+  defend(attacker: Character) {
+    console.log(`${this.name} defends against ${attacker.name} with a shield.`);
+    // Implement defend logic
   }
 }
 
 // Knight class
 class Knight extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Knights
-  attack() {
-    console.log("Knight attacks with a sword.");
+  attack(target: Character) {
+    console.log(`${this.name} attacks ${target.name} with a sword.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Knights
-  defend() {
-    console.log("Knight defends with armor.");
+  defend(attacker: Character) {
+    console.log(`${this.name} defends against ${attacker.name} with armor.`);
+    // Implement defend logic
   }
 }
 
 // Archer class
 class Archer extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Archers
-  attack() {
-    console.log("Archer attacks with a bow and arrow.");
+  attack(target: Character) {
+    console.log(`${this.name} attacks ${target.name} with a bow and arrow.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Archers
-  defend() {
-    console.log("Archer defends with a tunic.");
+  defend(attacker: Character) {
+    console.log(`${this.name} defends against ${attacker.name} with a tunic.`);
+    // Implement defend logic
   }
 }
 
 // Mage class
 class Mage extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Mages
-  attack() {
-    console.log("Mage casts a powerful spell.");
+  attack(target: Character) {
+    console.log(`${this.name} casts a powerful spell at ${target.name}.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Mages
-  defend() {
-    console.log("Mage creates a magical shield.");
+  defend(attacker: Character) {
+    console.log(`${this.name} creates a magical shield to defend against ${attacker.name}.`);
+    // Implement defend logic
   }
 }
 
 // Ranger class
 class Ranger extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Rangers
-  attack() {
-    console.log("Ranger attacks with a bow and arrows.");
+  attack(target: Character) {
+    console.log(`${this.name} attacks ${target.name} with a bow and arrows.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Rangers
-  defend() {
-    console.log("Ranger takes cover and evades attacks.");
+  defend(attacker: Character) {
+    console.log(`${this.name} takes cover and evades attacks from ${attacker.name}.`);
+    // Implement defend logic
   }
 }
 
 // Druid class
 class Druid extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Druids
-  attack() {
-    console.log("Druid summons the power of nature.");
+  attack(target: Character) {
+    console.log(`${this.name} summons the power of nature against ${target.name}.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Druids
-  defend() {
-    console.log("Druid transforms into a bear form for defense.");
+  defend(attacker: Character) {
+    console.log(`${this.name} transforms into a bear form to defend against ${attacker.name}.`);
+    // Implement defend logic
   }
 }
 
 // Barbarian class
 class Barbarian extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Barbarians
-  attack() {
-    console.log("Barbarian delivers a powerful axe swing.");
+  attack(target: Character) {
+    console.log(`${this.name} delivers a powerful axe swing at ${target.name}.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Barbarians
-  defend() {
-    console.log("Barbarian relies on sheer toughness and endurance.");
+  defend(attacker: Character) {
+    console.log(`${this.name} relies on sheer toughness and endurance to defend against ${attacker.name}.`);
+    // Implement defend logic
   }
 }
 
 // Cleric class
 class Cleric extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Clerics
-  attack() {
-    console.log("Cleric invokes divine magic to smite enemies.");
+  attack(target: Character) {
+    console.log(`${this.name} channels divine energy to smite ${target.name}.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Clerics
-  defend() {
-    console.log("Cleric calls upon healing spells to protect allies.");
+  defend(attacker: Character) {
+    console.log(`${this.name} invokes protective prayers to defend against ${attacker.name}.`);
+    // Implement defend logic
   }
 }
 
 // Monk class
 class Monk extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Monks
-  attack() {
-    console.log("Monk uses martial arts to strike swiftly.");
+  attack(target: Character) {
+    console.log(`${this.name} delivers precise strikes at ${target.name}.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Monks
-  defend() {
-    console.log("Monk employs evasive techniques to avoid damage.");
+  defend(attacker: Character) {
+    console.log(`${this.name} relies on agility and evasion to defend against ${attacker.name}.`);
+    // Implement defend logic
   }
 }
 
 // Bard class
 class Bard extends Character {
-  constructor() {
-    super();
+  constructor(name: string, health: number, level: number) {
+    super(name, health, level);
   }
 
   // Implement the attack method for Bards
-  attack() {
-    console.log("Bard performs a rousing musical performance.");
+  attack(target: Character) {
+    console.log(`${this.name} performs a mesmerizing musical attack on ${target.name}.`);
+    // Implement attack logic
   }
 
   // Implement the defend method for Bards
-  defend() {
-    console.log("Bard uses inspiring words to bolster allies.");
+  defend(attacker: Character) {
+    console.log(`${this.name} uses bardic inspiration to bolster defenses against ${attacker.name}.`);
+    // Implement defend logic
   }
 }
-
-// Usage
-const ogre = new Ogre();
-ogre.attack();
-ogre.defend();
-ogre.collectGold(10);
-
-const peon = new Peon();
-peon.attack();
-peon.defend();
-peon.collectGold(5);
-
-const knight = new Knight();
-knight.attack();
-knight.defend();
-knight.collectGold(15);
-
-const archer = new Archer();
-archer.attack();
-archer.defend();
-archer.collectGold(7);
-
-const mage = new Mage();
-mage.attack();
-mage.defend();
-mage.collectGold(20);
-
-const ranger = new Ranger();
-ranger.attack();
-ranger.defend();
-ranger.collectGold(12);
-
-const druid = new Druid();
-druid.attack();
-druid.defend();
-druid.collectGold(8);
-
-const barbarian = new Barbarian();
-barbarian.attack();
-barbarian.defend();
-barbarian.collectGold(14);
-
-const cleric = new Cleric();
-cleric.attack();
-cleric.defend();
-cleric.collectGold(18);
-
-const monk = new Monk();
-monk.attack();
-monk.defend();
-monk.collectGold(9);
-
-const bard = new Bard();
-bard.attack();
-bard.defend();
-bard.collectGold(11);
 
